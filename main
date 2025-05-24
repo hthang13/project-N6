@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "SanPham.h"
-#include "KhachHang.h"';l';l
+#include "KhachHang.h"
 #include "NhanVien.h"
 #include "ThanhToan.h"
 #include "DonHang.h"
@@ -10,23 +10,23 @@ using namespace std;
 
 int main() {
     // Tao khach hang
-    KhachHang* kh1 = new KhachHang("KH001", "Nguyen Van A", "123 Duong ABC", "0909123456");
-    KhachHangVIP* kh2 = new KhachHangVIP("KH002", "Tran Thi B", "456 Duong XYZ", "0912345678", 3, 1500);
+    KhachHang* kh1 = new KhachHang("KH101", "Pham Tuan Kiet", "12 Duong Tran Binh", "0988123456");
+    KhachHangVIP* kh2 = new KhachHangVIP("KH102", "Doan Ngoc Anh", "45 Duong Le Loi", "0977654321", 4, 2200);
 
     // Tao san pham
-    SanPhamCoSoLuong* sp1 = new SanPhamCoSoLuong("SP001", "Dien thoai Samsung", 15000000, 10, "Samsung");
-    SanPhamCoSoLuong* sp2 = new SanPhamCoSoLuong("SP002", "Laptop Dell", 25000000, 5, "Dell");
+    SanPhamCoSoLuong* sp1 = new SanPhamCoSoLuong("SP101", "May tinh bang Lenovo", 8500000, 12, "Lenovo");
+    SanPhamCoSoLuong* sp2 = new SanPhamCoSoLuong("SP102", "TV LG 50 inch", 12500000, 6, "LG");
 
     // Tao nhan vien
-    NhanVienBanHang nv1("NV001", "Le Van C", 200000, "Nhan vien ban hang", 1000000, 20);
+    NhanVienBanHang nv1("NV201", "Ngo Minh Hoang", 180000, "Ban hang tai cua hang", 900000, 18);
 
     // Tao don hang thuong
-    DonHang* dh1 = new DonHang("DH001", kh1);
+    DonHang* dh1 = new DonHang("DH301", kh1);
     dh1->themSanPham(sp1);
     dh1->themSanPham(sp2);
 
     // Tao don hang online
-    DonHangOnline* dh2 = new DonHangOnline("DH002", kh2, "789 Duong Online", "21-05-2025");
+    DonHangOnline* dh2 = new DonHangOnline("DH302", kh2, "78 Duong Online", "24-05-2025");
     dh2->themSanPham(sp2);
 
     // Hien thi thong tin don hang
@@ -45,7 +45,7 @@ int main() {
 
     // Vi du su dung ThanhToan
     ThanhToan tt1("Tien mat", 0, "Thanh toan truc tiep");
-    ThanhToan tt2("The tin dung", 15000, "Phi giao dich the");
+    ThanhToan tt2("The tin dung", 15000, "Phi giao dich qua the");
     ThanhToan ttTong = tt1 + tt2;
 
     cout << "\nThanh toan 1: ";
