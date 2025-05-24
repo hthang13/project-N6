@@ -1,0 +1,79 @@
+#include <iostream>
+#include <vector>
+#include "SanPham.h"
+#include "KhachHang.h"
+#include "NhanVien.h"
+#include "ThanhToan.h"
+#include "DonHang.h"
+
+using namespace std;
+
+int main() {
+    // Tao khach hang
+    KhachHang* kh1 = new KhachHang("KH001", "Nguyen Van A", "123 Duong ABC", "0909123456");
+    KhachHangVIP* kh2 = new KhachHangVIP("KH002", "Tran Thi B", "456 Duong XYZ", "0912345678", 3, 1500);
+
+    // Tao san pham
+    SanPhamCoSoLuong* sp1 = new SanPhamCoSoLuong("SP001", "Dien thoai Samsung", 15000000, 10, "Samsung");
+    SanPhamCoSoLuong* sp2 = new SanPhamCoSoLuong("SP002", "Laptop Dell", 25000000, 5, "Dell");
+
+    // Tao nhan vien
+    NhanVienBanHang nv1("NV001", "Le Van C", 200000, "Nhan vien ban hang", 1000000, 20);
+
+    // Tao don hang thuong
+    DonHang* dh1 = new DonHang("DH001", kh1);
+    dh1->themSanPham(sp1);
+    dh1->themSanPham(sp2);
+
+    // Tao don hang online
+    DonHangOnline* dh2 = new DonHangOnline("DH002", kh2, "789 Duong Online", "21-05-2025");
+    dh2->themSanPham(sp2);
+
+    // Hien thi thong tin don hang
+    cout << "=== Thong tin Don Hang Thuong ===" << endl;
+    dh1->xuatThongTin();
+
+    cout << "\n=== Thong tin Don Hang Online ===" << endl;
+    dh2->xuatThongTin();
+
+    // Tinh luong nhan vien
+    int gioLam = 8;
+    cout << "\nLuong nhan vien " << nv1.getChucVu() << ": " << nv1.tinhLuong(gioLam) << endl;
+
+    // Tinh chiet khau khach hang VIP
+    cout << "Chiet khau cua khach hang VIP: " << kh2->tinhChietKhau() << endl;
+
+    // Vi du su dung ThanhToan
+    ThanhToan tt1("Tien mat", 0, "Thanh toan truc tiep");
+    ThanhToan tt2("The tin dung", 15000, "Phi giao dich the");
+    ThanhToan ttTong = tt1 + tt2;
+
+    cout << "\nThanh toan 1: ";
+    tt1.thanhToan(dh1->tinhTongTien());
+
+    cout << "Thanh toan 2: ";
+    tt2.thanhToan(dh2->tinhTongTien());
+
+    cout << "Tong phi thanh toan: ";
+    ttTong.hienThiPhi();
+
+    // Giam gia cho san pham
+    cout << "\nGia san pham truoc khi giam gia: " << sp1->getGia() << endl;
+    sp1->giamGia(10);  // giam 10%
+    cout << "Gia san pham sau khi giam gia 10%: " << sp1->getGia() << endl;
+
+    // So sanh gia san pham
+    if (*sp1 > *sp2) {
+        cout << sp1->getMaSP() << " co gia cao hon " << sp2->getMaSP() << endl;
+    } else {
+        cout << sp2->getMaSP() << " co gia cao hon " << sp1->getMaSP() << endl;
+    }
+
+    // Giai phong bo nho
+    delete dh1;
+    delete dh2;
+    delete kh1;
+    delete kh2;
+
+    return 0;
+}
