@@ -1,32 +1,35 @@
-// PhuongThucThanhToan.h
-#ifndef PHUONGTHUCTHANHTOAN_H
-#define PHUONGTHUCTHANHTOAN_H
+#ifndef THANHTOAN_H
+#define THANHTOAN_H
 
 #include <iostream>
 #include <string>
 using namespace std;
 
-class PhuongThucThanhToan {
-public:
-    virtual ~PhuongThucThanhToan() {}
-    virtual void thanhToan(double tien) const = 0;
-};
-
-class ThanhToan : public PhuongThucThanhToan {
+class ThanhToan {
 protected:
     string loai;
     double phi;
     string moTa;
 public:
-    ThanhToan(string l, double p, string mt);
-    ~ThanhToan();
+    ThanhToan(string l = "", double p = 0.0, string mt = "");
+    virtual ~ThanhToan();
 
-    void thanhToan(double tien) const override;    // 1. Thanh toán
-    void hienThiPhi() const;                        // 2. Hi?n th? phí
-    string getLoai() const;                         // 3. L?y lo?i thanh toán
+    virtual void thanhToan(double tien) const = 0; 
+    virtual void hienThiPhi() const;
+    string getLoai() const;
 
-    ThanhToan operator+(const ThanhToan& t) const; // Quá t?i c?ng
+    ThanhToan* operator+(const ThanhToan& t) const; 
+};
+
+class ThanhToanTienMat : public ThanhToan {
+private:
+    double soTienMatKhachDua;
+public:
+    ThanhToanTienMat(double phi = 0.0, double tienKhachDua = 0.0);
+    void thanhToan(double tien) const override;
+    void hienThiPhi() const override;
+    void setSoTienMatKhachDua(double tien);
+    double getSoTienMatKhachDua() const;
 };
 
 #endif
-
